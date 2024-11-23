@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Shopping list in JS HW</title>
+    <h1>Shopping list in JS HW</h1>
+</head>
+<body>
+    <h3>Add your shopping list here:</h3>
+    <form id="myform">
+        <input id= "myinput" type="text">
+        
+        <button>ADD</button>
+    </form>
+    <h3>Your shopping list:</h3>
+    <ul id="myitems"></ul>
+    <script>
+        var myform=document.getElementById("myform");
+        var myinput=document.getElementById("myinput");
+        var myitems=document.getElementById("myitems");
+
+        myform.addEventListener("submit",
+            function(event){
+                event.preventDefault();
+                createItem(myinput.value);
+            }
+        )
+        function createItem(inputItems){
+            var items=`<li>${inputItems}
+            <input type="checkbox"><button onclick="deleteElement(this)">Delete</button></li>
+            `
+            myitems.insertAdjacentHTML("beforeend", items)
+            myinput.value="";
+            myinput.focus();
+            
+        }
+        function deleteElement(ElementtoDelete){
+            ElementtoDelete.parentElement.remove();
+        }
+
+    </script>
+</body>
+</html>
